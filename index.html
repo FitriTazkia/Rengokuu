@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rengokuu: Chronicles of Creation</title>
+  <link href="https://fonts.googleapis.com/css2?family=UnifrakturCook:wght@700&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Montserrat', sans-serif;
+      background: linear-gradient(120deg, #232526 0%, #414345 100%);
+      color: #f3e9ff;
+      min-height: 100vh;
+      position: relative;
+      overflow-x: hidden;
+    }
+    h1, h2 {
+      font-family: 'UnifrakturCook', cursive;
+      letter-spacing: 2px;
+      text-shadow: 0 2px 8px #6a4fb6;
+    }
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 2rem;
+      background: rgba(40, 30, 60, 0.7);
+      border-radius: 16px;
+      box-shadow: 0 4px 32px #6a4fb6a0;
+    }
+    .magic-btn {
+      background: linear-gradient(90deg, #6a4fb6 0%, #b993d6 100%);
+      color: #fff;
+      border: none;
+      padding: 0.75rem 2rem;
+      border-radius: 32px;
+      font-size: 1.2rem;
+      cursor: pointer;
+      box-shadow: 0 2px 12px #6a4fb6a0;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .magic-btn:hover {
+      transform: scale(1.08) rotate(-2deg);
+      box-shadow: 0 4px 24px #b993d6a0;
+      background: linear-gradient(90deg, #b993d6 0%, #6a4fb6 100%);
+    }
+    .footer {
+      text-align: center;
+      margin-top: 2rem;
+      font-style: italic;
+      color: #b993d6;
+    }
+    /* Placeholder for magic particles */
+    #magic-bg {
+      position: fixed;
+      top: 0; left: 0; width: 100vw; height: 100vh;
+      z-index: -1;
+      pointer-events: none;
+    }
+  </style>
+</head>
+<body>
+  <canvas id="magic-bg"></canvas>
+  <div class="container">
+    <h1>Rengokuu: Chronicles of Creation</h1>
+    <p>Welcome, traveler, to the enchanted realm of <strong>Rengokuu</strong>.</p>
+    <h2>✨ About Me</h2>
+    <p>In the heart of the digital forest, I am known as <strong>FitriTazkia</strong>, a conjurer of code and weaver of dreams. My journey began under the twin moons of curiosity and creativity, forging paths through the arcane arts of software development.</p>
+    <h2>🧙‍♂️ Skills & Magic</h2>
+    <ul>
+      <li>Spellbinding Frontend Alchemy (React, Vue, HTML, CSS)</li>
+      <li>Backend Sorcery (Node.js, Python, Express)</li>
+      <li>Potion Brewing (APIs, Databases, RESTful magic)</li>
+      <li>Familiar Summoning (Git, Docker, Linux)</li>
+    </ul>
+    <h2>🏰 Projects & Quests</h2>
+    <ul>
+      <li><strong>The Portal of Productivity</strong>: A task manager enchanted with reminders and time spells.</li>
+      <li><strong>Mystic Marketplace</strong>: An e-commerce realm where treasures await.</li>
+      <li><strong>Guardian's Watch</strong>: A security system warding off digital phantoms.</li>
+    </ul>
+    <h2>📜 Contact the Mage</h2>
+    <p>Should you seek guidance or wish to embark on a quest together, send your raven to:</p>
+    <ul>
+      <li><strong>Email</strong>: fitritazkia@fantasyrealm.com</li>
+      <li><strong>LinkedIn</strong>: <a href="https://linkedin.com/in/fitritazkia" target="_blank" rel="noopener">LinkedIn Portal</a></li>
+    </ul>
+    <button class="magic-btn">Summon More Magic</button>
+  </div>
+  <div class="footer">
+    May your journey through Rengokuu be filled with wonder and inspiration. 🌌
+  </div>
+  <script>
+    // Simple magic particles animation
+    const canvas = document.getElementById('magic-bg');
+    const ctx = canvas.getContext('2d');
+    let w = window.innerWidth;
+    let h = window.innerHeight;
+    canvas.width = w;
+    canvas.height = h;
+    let particles = [];
+    for(let i=0;i<120;i++){
+      particles.push({
+        x: Math.random()*w,
+        y: Math.random()*h,
+        r: Math.random()*2+1,
+        dx: (Math.random()-0.5)*0.5,
+        dy: (Math.random()-0.5)*0.5,
+        c: `rgba(${180+Math.random()*60},${140+Math.random()*80},${220+Math.random()*35},${0.7+Math.random()*0.3})`
+      });
+    }
+    function draw(){
+      ctx.clearRect(0,0,w,h);
+      for(let p of particles){
+        ctx.beginPath();
+        ctx.arc(p.x,p.y,p.r,0,2*Math.PI);
+        ctx.fillStyle=p.c;
+        ctx.fill();
+        p.x+=p.dx;
+        p.y+=p.dy;
+        if(p.x<0||p.x>w)p.dx*=-1;
+        if(p.y<0||p.y>h)p.dy*=-1;
+      }
+      requestAnimationFrame(draw);
+    }
+    draw();
+    window.addEventListener('resize',()=>{
+      w=window.innerWidth;h=window.innerHeight;
+      canvas.width=w;canvas.height=h;
+    });
+  </script>
+</body>
+</html>
